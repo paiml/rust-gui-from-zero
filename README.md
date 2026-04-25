@@ -5,6 +5,8 @@
 [![Rust](https://img.shields.io/badge/rust-1.93%2B-orange.svg)](https://www.rust-lang.org)
 [![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen.svg)](#quality-gates)
 
+![Side-by-side Rust GUI demos: iced todo, fltk calculator, gtk4 password generator, relm4 Simon Says, egui counter](assets/hero.svg)
+
 Side-by-side Rust GUI demos across **iced**, **fltk**, **gtk4**, **relm4**,
 and **egui** — each with a provable contract on its core state machine,
 100% line-and-function coverage on its logic crate, and a strict

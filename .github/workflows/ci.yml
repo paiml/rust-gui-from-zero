@@ -29,28 +29,40 @@ jobs:
     runs-on: [self-hosted, intel]
     steps:
       - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-deps
       - run: cargo clippy --workspace --all-targets --no-deps -- -D warnings
+        env:
+          CARGO_TARGET_DIR: ${{ runner.temp }}/cargo-target
 
   test:
     name: cargo test --workspace
     runs-on: [self-hosted, intel]
     steps:
       - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-deps
       - run: cargo test --workspace --all-targets
+        env:
+          CARGO_TARGET_DIR: ${{ runner.temp }}/cargo-target
 
   contracts:
     name: provable contracts (lib tests)
     runs-on: [self-hosted, intel]
     steps:
       - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-deps
       - run: cargo test --workspace --lib
+        env:
+          CARGO_TARGET_DIR: ${{ runner.temp }}/cargo-target
 
   coverage:
     name: cargo llvm-cov (workspace lib, 100% lines)
     runs-on: [self-hosted, intel]
     steps:
       - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-deps
       - run: cargo llvm-cov --workspace --lib --ignore-filename-regex '(src/bin/|target/)' --fail-under-lines 100 --fail-under-functions 100
+        env:
+          CARGO_TARGET_DIR: ${{ runner.temp }}/cargo-target
 
   deny:
     name: cargo deny check advisories|licenses|bans|sources
