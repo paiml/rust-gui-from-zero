@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" width="1200" height="500">
+  <!-- Background -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0d1117"/>
+      <stop offset="1" stop-color="#161b22"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="500" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" fill="#f0f6fc">
+    <text x="600" y="56" text-anchor="middle" font-size="28" font-weight="700">Side-by-side Rust GUI demos</text>
+    <text x="600" y="88" text-anchor="middle" font-size="16" fill="#8b949e">iced · fltk · gtk4 · relm4 · egui — each with a provable contract on its core state machine</text>
+  </g>
+
+  <!-- Window template: 5 windows, 220x300, gap 10, total 1150, margin 25 -->
+  <!-- Common window chrome: rounded-rect background, traffic lights, title bar -->
+
+  <!-- 1. iced — todo -->
+  <g transform="translate(25, 130)" filter="url(#shadow)">
+    <rect width="220" height="300" rx="8" fill="#21262d" stroke="#30363d"/>
+    <rect width="220" height="32" rx="8" fill="#1c2128"/>
+    <rect y="24" width="220" height="8" fill="#1c2128"/>
+    <circle cx="14" cy="16" r="5" fill="#ff5f57"/>
+    <circle cx="30" cy="16" r="5" fill="#ffbd2e"/>
+    <circle cx="46" cy="16" r="5" fill="#28c840"/>
+    <text x="110" y="20" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" fill="#8b949e">iced — todo</text>
+    <!-- todo items -->
+    <g font-family="-apple-system, sans-serif" font-size="12" fill="#c9d1d9">
+      <rect x="14" y="50" width="14" height="14" rx="2" fill="none" stroke="#5a4fcf" stroke-width="1.5"/>
+      <path d="M16 56 l4 4 l8 -8" fill="none" stroke="#5a4fcf" stroke-width="2"/>
+      <text x="38" y="62" fill="#8b949e" text-decoration="line-through">write contract</text>
+      <rect x="14" y="78" width="14" height="14" rx="2" fill="none" stroke="#5a4fcf" stroke-width="1.5"/>
+      <path d="M16 84 l4 4 l8 -8" fill="none" stroke="#5a4fcf" stroke-width="2"/>
+      <text x="38" y="90" fill="#8b949e" text-decoration="line-through">add validators</text>
+      <rect x="14" y="106" width="14" height="14" rx="2" fill="none" stroke="#5a4fcf" stroke-width="1.5"/>
+      <text x="38" y="118">walk invariants</text>
+      <rect x="14" y="134" width="14" height="14" rx="2" fill="none" stroke="#5a4fcf" stroke-width="1.5"/>
+      <text x="38" y="146">100% coverage</text>
+      <rect x="14" y="162" width="14" height="14" rx="2" fill="none" stroke="#5a4fcf" stroke-width="1.5"/>
+      <text x="38" y="174">ship</text>
+    </g>
+    <rect x="14" y="252" width="192" height="32" rx="4" fill="#5a4fcf"/>
+    <text x="110" y="272" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="12" font-weight="600" fill="#fff">+ add task</text>
+  </g>
+
+  <!-- 2. fltk — calculator -->
+  <g transform="translate(255, 130)" filter="url(#shadow)">
+    <rect width="220" height="300" rx="8" fill="#21262d" stroke="#30363d"/>
+    <rect width="220" height="32" rx="8" fill="#1c2128"/>
+    <rect y="24" width="220" height="8" fill="#1c2128"/>
+    <circle cx="14" cy="16" r="5" fill="#ff5f57"/>
+    <circle cx="30" cy="16" r="5" fill="#ffbd2e"/>
+    <circle cx="46" cy="16" r="5" fill="#28c840"/>
+    <text x="110" y="20" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#8b949e">fltk — calculator</text>
+    <!-- display -->
+    <rect x="14" y="50" width="192" height="44" rx="4" fill="#0d1117" stroke="#30363d"/>
+    <text x="200" y="80" text-anchor="end" font-family="ui-monospace, monospace" font-size="22" fill="#79c0ff">42</text>
+    <!-- button grid 4x4 -->
+    <g font-family="-apple-system, sans-serif" font-size="14" font-weight="600">
+      <!-- digits -->
+      <g fill="#30363d">
+        <rect x="14" y="106" width="44" height="36" rx="3"/>
+        <rect x="62" y="106" width="44" height="36" rx="3"/>
+        <rect x="110" y="106" width="44" height="36" rx="3"/>
+        <rect x="14" y="148" width="44" height="36" rx="3"/>
+        <rect x="62" y="148" width="44" height="36" rx="3"/>
+        <rect x="110" y="148" width="44" height="36" rx="3"/>
+        <rect x="14" y="190" width="44" height="36" rx="3"/>
+        <rect x="62" y="190" width="44" height="36" rx="3"/>
+        <rect x="110" y="190" width="44" height="36" rx="3"/>
+        <rect x="14" y="232" width="92" height="36" rx="3"/>
+        <rect x="110" y="232" width="44" height="36" rx="3"/>
+      </g>
+      <!-- ops -->
+      <g fill="#005577">
+        <rect x="158" y="106" width="48" height="36" rx="3"/>
+        <rect x="158" y="148" width="48" height="36" rx="3"/>
+        <rect x="158" y="190" width="48" height="36" rx="3"/>
+        <rect x="158" y="232" width="48" height="36" rx="3"/>
+      </g>
+      <g fill="#c9d1d9">
+        <text x="36" y="130" text-anchor="middle">7</text><text x="84" y="130" text-anchor="middle">8</text><text x="132" y="130" text-anchor="middle">9</text>
+        <text x="36" y="172" text-anchor="middle">4</text><text x="84" y="172" text-anchor="middle">5</text><text x="132" y="172" text-anchor="middle">6</text>
+        <text x="36" y="214" text-anchor="middle">1</text><text x="84" y="214" text-anchor="middle">2</text><text x="132" y="214" text-anchor="middle">3</text>
+        <text x="60" y="256" text-anchor="middle">0</text><text x="132" y="256" text-anchor="middle">.</text>
+      </g>
+      <g fill="#fff">
+        <text x="182" y="130" text-anchor="middle">÷</text>
+        <text x="182" y="172" text-anchor="middle">×</text>
+        <text x="182" y="214" text-anchor="middle">−</text>
+        <text x="182" y="256" text-anchor="middle">+</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- 3. gtk4 — random password -->
+  <g transform="translate(485, 130)" filter="url(#shadow)">
+    <rect width="220" height="300" rx="8" fill="#21262d" stroke="#30363d"/>
+    <rect width="220" height="32" rx="8" fill="#1c2128"/>
+    <rect y="24" width="220" height="8" fill="#1c2128"/>
+    <circle cx="14" cy="16" r="5" fill="#ff5f57"/>
+    <circle cx="30" cy="16" r="5" fill="#ffbd2e"/>
+    <circle cx="46" cy="16" r="5" fill="#28c840"/>
+    <text x="110" y="20" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#8b949e">gtk4 — password</text>
+    <!-- password input -->
+    <rect x="14" y="58" width="192" height="36" rx="4" fill="#0d1117" stroke="#3584e4"/>
+    <text x="24" y="82" font-family="ui-monospace, monospace" font-size="13" fill="#c9d1d9">k7$Lp@9zXq!2wRn</text>
+    <!-- length slider -->
+    <text x="14" y="118" font-family="-apple-system, sans-serif" font-size="11" fill="#8b949e">length: 16</text>
+    <line x1="14" y1="135" x2="206" y2="135" stroke="#30363d" stroke-width="3" stroke-linecap="round"/>
+    <line x1="14" y1="135" x2="120" y2="135" stroke="#3584e4" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="120" cy="135" r="7" fill="#3584e4"/>
+    <!-- strength meter -->
+    <text x="14" y="170" font-family="-apple-system, sans-serif" font-size="11" fill="#8b949e">strength</text>
+    <g>
+      <rect x="14" y="180" width="36" height="6" rx="2" fill="#3fb950"/>
+      <rect x="54" y="180" width="36" height="6" rx="2" fill="#3fb950"/>
+      <rect x="94" y="180" width="36" height="6" rx="2" fill="#3fb950"/>
+      <rect x="134" y="180" width="36" height="6" rx="2" fill="#3fb950"/>
+      <rect x="174" y="180" width="32" height="6" rx="2" fill="#30363d"/>
+    </g>
+    <text x="14" y="208" font-family="-apple-system, sans-serif" font-size="10" fill="#3fb950">strong (4/5)</text>
+    <!-- regen button -->
+    <rect x="14" y="252" width="192" height="32" rx="4" fill="#3584e4"/>
+    <text x="110" y="272" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="12" font-weight="600" fill="#fff">↻ regenerate</text>
+  </g>
+
+  <!-- 4. relm4 — Simon Says -->
+  <g transform="translate(715, 130)" filter="url(#shadow)">
+    <rect width="220" height="300" rx="8" fill="#21262d" stroke="#30363d"/>
+    <rect width="220" height="32" rx="8" fill="#1c2128"/>
+    <rect y="24" width="220" height="8" fill="#1c2128"/>
+    <circle cx="14" cy="16" r="5" fill="#ff5f57"/>
+    <circle cx="30" cy="16" r="5" fill="#ffbd2e"/>
+    <circle cx="46" cy="16" r="5" fill="#28c840"/>
+    <text x="110" y="20" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#8b949e">relm4 — simon</text>
+    <!-- 4 tile grid -->
+    <g>
+      <rect x="30"  y="60"  width="76" height="76" rx="6" fill="#3fb950"/>
+      <rect x="114" y="60"  width="76" height="76" rx="6" fill="#f85149"/>
+      <rect x="30"  y="144" width="76" height="76" rx="6" fill="#d29922" opacity="1"/>
+      <rect x="114" y="144" width="76" height="76" rx="6" fill="#3081f7" opacity="0.55"/>
+      <!-- highlight pulse on yellow -->
+      <rect x="30" y="144" width="76" height="76" rx="6" fill="none" stroke="#fff" stroke-width="3" opacity="0.7"/>
+    </g>
+    <!-- score / round -->
+    <text x="110" y="248" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" fill="#8b949e">round</text>
+    <text x="110" y="276" text-anchor="middle" font-family="ui-monospace, monospace" font-size="22" font-weight="700" fill="#c9d1d9">07</text>
+  </g>
+
+  <!-- 5. egui — counter -->
+  <g transform="translate(945, 130)" filter="url(#shadow)">
+    <rect width="220" height="300" rx="8" fill="#21262d" stroke="#30363d"/>
+    <rect width="220" height="32" rx="8" fill="#1c2128"/>
+    <rect y="24" width="220" height="8" fill="#1c2128"/>
+    <circle cx="14" cy="16" r="5" fill="#ff5f57"/>
+    <circle cx="30" cy="16" r="5" fill="#ffbd2e"/>
+    <circle cx="46" cy="16" r="5" fill="#28c840"/>
+    <text x="110" y="20" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#8b949e">egui — counter</text>
+    <!-- big number -->
+    <text x="110" y="160" text-anchor="middle" font-family="ui-monospace, monospace" font-size="72" font-weight="700" fill="#f2a41c">42</text>
+    <!-- +/- buttons -->
+    <g>
+      <rect x="34" y="200" width="64" height="44" rx="6" fill="#30363d" stroke="#f2a41c" stroke-width="1.5"/>
+      <text x="66" y="231" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="22" font-weight="700" fill="#f2a41c">−</text>
+      <rect x="122" y="200" width="64" height="44" rx="6" fill="#f2a41c"/>
+      <text x="154" y="231" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="22" font-weight="700" fill="#0d1117">+</text>
+    </g>
+    <text x="110" y="272" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="10" fill="#8b949e">[contract: COUNTER_NON_NEG]</text>
+  </g>
+
+  <!-- footer hint -->
+  <text x="600" y="475" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#6e7681">cargo run -p &lt;framework&gt;-demos --bin &lt;name&gt;</text>
+</svg>
