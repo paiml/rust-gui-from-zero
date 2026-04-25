@@ -29,8 +29,7 @@ jobs:
     runs-on: [self-hosted, intel]
     steps:
       - uses: actions/checkout@v4
-      - name: Install GUI system libraries
-        run: sudo apt-get -o DPkg::Lock::Timeout=300 update -qq && sudo apt-get -o DPkg::Lock::Timeout=300 install -y --no-install-recommends libgtk-4-dev libpango1.0-dev libx11-dev libxext-dev libxft-dev libxinerama-dev libxcursor-dev libxrender-dev libxfixes-dev libpng-dev libgl1-mesa-dev libglu1-mesa-dev pkg-config cmake
+      - uses: ./.github/actions/setup-deps
       - run: cargo clippy --workspace --all-targets --no-deps -- -D warnings
 
   test:
@@ -38,8 +37,7 @@ jobs:
     runs-on: [self-hosted, intel]
     steps:
       - uses: actions/checkout@v4
-      - name: Install GUI system libraries
-        run: sudo apt-get -o DPkg::Lock::Timeout=300 update -qq && sudo apt-get -o DPkg::Lock::Timeout=300 install -y --no-install-recommends libgtk-4-dev libpango1.0-dev libx11-dev libxext-dev libxft-dev libxinerama-dev libxcursor-dev libxrender-dev libxfixes-dev libpng-dev libgl1-mesa-dev libglu1-mesa-dev pkg-config cmake
+      - uses: ./.github/actions/setup-deps
       - run: cargo test --workspace --all-targets
 
   contracts:
@@ -47,8 +45,7 @@ jobs:
     runs-on: [self-hosted, intel]
     steps:
       - uses: actions/checkout@v4
-      - name: Install GUI system libraries
-        run: sudo apt-get -o DPkg::Lock::Timeout=300 update -qq && sudo apt-get -o DPkg::Lock::Timeout=300 install -y --no-install-recommends libgtk-4-dev libpango1.0-dev libx11-dev libxext-dev libxft-dev libxinerama-dev libxcursor-dev libxrender-dev libxfixes-dev libpng-dev libgl1-mesa-dev libglu1-mesa-dev pkg-config cmake
+      - uses: ./.github/actions/setup-deps
       - run: cargo test --workspace --lib
 
   coverage:
@@ -56,8 +53,7 @@ jobs:
     runs-on: [self-hosted, intel]
     steps:
       - uses: actions/checkout@v4
-      - name: Install GUI system libraries
-        run: sudo apt-get -o DPkg::Lock::Timeout=300 update -qq && sudo apt-get -o DPkg::Lock::Timeout=300 install -y --no-install-recommends libgtk-4-dev libpango1.0-dev libx11-dev libxext-dev libxft-dev libxinerama-dev libxcursor-dev libxrender-dev libxfixes-dev libpng-dev libgl1-mesa-dev libglu1-mesa-dev pkg-config cmake
+      - uses: ./.github/actions/setup-deps
       - run: cargo llvm-cov --workspace --lib --ignore-filename-regex '(src/bin/|target/)' --fail-under-lines 100 --fail-under-functions 100
 
   deny:

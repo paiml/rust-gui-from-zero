@@ -1,0 +1,29 @@
+name: setup-deps
+description: >-
+  Install GUI system libraries (gtk4, fltk, X11) with a retry loop. The
+  intel-clean-room runners share /var/lib/apt/lists/, so concurrent jobs
+  routinely collide on the apt list lock. apt's own DPkg::Lock::Timeout
+  only covers the dpkg lock, not the list lock — so we retry the whole
+  update+install up to 30 times with 10s gaps (~5 min total).
+
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: |
+        set +e
+        PKGS="libgtk-4-dev libpango1.0-dev libx11-dev libxext-dev libxft-dev \
+              libxinerama-dev libxcursor-dev libxrender-dev libxfixes-dev \
+              libpng-dev libgl1-mesa-dev libglu1-mesa-dev pkg-config cmake"
+        n=0
+        while [ $n -lt 30 ]; do
+          if sudo apt-get -o DPkg::Lock::Timeout=300 update -qq \
+             && sudo apt-get -o DPkg::Lock::Timeout=300 install -y --no-install-recommends $PKGS; then
+            exit 0
+          fi
+          n=$((n+1))
+          echo "::notice::apt attempt $n failed (likely shared-host lock contention), retrying in 10s..."
+          sleep 10
+        done
+        echo "::error::apt failed after 30 attempts"
+        exit 1
