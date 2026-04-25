@@ -1,0 +1,67 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  CARGO_TERM_COLOR: always
+  RUSTFLAGS: "-D warnings"
+  CARGO_INCREMENTAL: 0
+  RUST_MIN_STACK: "8388608"
+
+jobs:
+  fmt:
+    name: cargo fmt --check
+    runs-on: [self-hosted, intel]
+    steps:
+      - uses: actions/checkout@v4
+      - run: cargo fmt --all -- --check
+
+  clippy:
+    name: cargo clippy -D warnings
+    runs-on: [self-hosted, intel]
+    steps:
+      - uses: actions/checkout@v4
+      - run: cargo clippy --workspace --all-targets --no-deps -- -D warnings
+
+  test:
+    name: cargo test --workspace
+    runs-on: [self-hosted, intel]
+    steps:
+      - uses: actions/checkout@v4
+      - run: cargo test --workspace --all-targets
+
+  contracts:
+    name: provable contracts (lib tests)
+    runs-on: [self-hosted, intel]
+    steps:
+      - uses: actions/checkout@v4
+      - run: cargo test --workspace --lib
+
+  coverage:
+    name: cargo llvm-cov (workspace lib, 100% lines)
+    runs-on: [self-hosted, intel]
+    steps:
+      - uses: actions/checkout@v4
+      - run: cargo llvm-cov --workspace --lib --ignore-filename-regex '(src/bin/|target/)' --fail-under-lines 100 --fail-under-functions 100
+
+  deny:
+    name: cargo deny check advisories|licenses|bans|sources
+    runs-on: [self-hosted, intel]
+    steps:
+      - uses: actions/checkout@v4
+      - run: cargo deny check advisories licenses bans sources
+
+  gate:
+    name: gate
+    runs-on: [self-hosted, intel]
+    needs: [fmt, clippy, test, contracts, coverage, deny]
+    steps:
+      - run: echo "All required checks passed."

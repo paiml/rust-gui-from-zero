@@ -1,0 +1,12 @@
+[package]
+name = "contracts"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+description = "Shared provable-contract macros + invariant runners for rust-gui-from-zero demos."
+
+[lints]
+workspace = true

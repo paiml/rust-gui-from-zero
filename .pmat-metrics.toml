@@ -1,0 +1,4 @@
+[thresholds]
+line_coverage = 100
+branch_coverage = 90
+complexity_max = 25

@@ -1,0 +1,18 @@
+[package]
+name = "relm4-demos"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+description = "relm4 GUI demos (Simon Says) with logic-vs-view split for full coverage."
+
+[dependencies]
+contracts = { workspace = true }
+relm4 = { workspace = true }
+gtk = { workspace = true }
+rand = { workspace = true }
+
+[lints]
+workspace = true

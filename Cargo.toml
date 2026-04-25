@@ -1,0 +1,60 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/contracts",
+    "crates/iced-demos",
+    "crates/fltk-demos",
+    "crates/gtk-demos",
+    "crates/relm4-demos",
+    "crates/egui-demos",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.93"
+license = "MIT"
+repository = "https://github.com/paiml/rust-gui-from-zero"
+authors = ["Noah Gift <noah@paiml.com>"]
+exclude = [
+    "target/",
+    "**/*.profraw",
+    "**/*.profdata",
+    ".vscode/",
+    ".idea/",
+    ".pmat/",
+    "**/proptest-regressions/",
+]
+
+[workspace.lints.rust]
+unsafe_code = "forbid"
+missing_debug_implementations = "warn"
+unreachable_pub = "warn"
+
+[workspace.lints.clippy]
+all = { level = "warn", priority = -1 }
+pedantic = { level = "warn", priority = -1 }
+unwrap_used = "warn"
+expect_used = "warn"
+panic = "warn"
+todo = "warn"
+unimplemented = "warn"
+module_name_repetitions = "allow"
+missing_errors_doc = "allow"
+must_use_candidate = "allow"
+
+[workspace.dependencies]
+contracts = { path = "crates/contracts", version = "0.1.0" }
+iced = "0.10"
+fltk = "=1.4.36"
+gtk = { version = "0.8.2", package = "gtk4", features = ["v4_6"] }
+relm4 = { version = "0.8.1", default-features = false, features = ["macros"] }
+eframe = "0.22.0"
+rand = "0.8.5"
+serde = { version = "1.0", features = ["derive"] }
+serde_yaml = "0.9"
+
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true

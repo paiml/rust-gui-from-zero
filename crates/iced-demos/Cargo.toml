@@ -1,0 +1,16 @@
+[package]
+name = "iced-demos"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+description = "Pure-Rust iced GUI demos with logic-vs-view split for full coverage."
+
+[dependencies]
+contracts = { workspace = true }
+iced = { workspace = true }
+
+[lints]
+workspace = true

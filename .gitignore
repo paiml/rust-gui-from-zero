@@ -1,0 +1,16 @@
+/target
+**/*.rs.bk
+Cargo.lock.bak
+.DS_Store
+*.swp
+*.swo
+.idea/
+.vscode/
+.envrc
+.direnv/
+/coverage/
+*.profraw
+*.profdata
+/.pmat-work/
+/.pmat/
+**/proptest-regressions/

@@ -1,0 +1,47 @@
+[advisories]
+version = 2
+yanked = "deny"
+ignore = [
+    # All three are upstream `unmaintained` advisories with no known
+    # vulnerability. They reach this workspace transitively through the
+    # egui / iced / fltk / accesskit GUI stacks and have no available
+    # upgrade. Re-evaluate when those upstreams cut new releases.
+    "RUSTSEC-2024-0436", # paste — unmaintained
+    "RUSTSEC-2024-0388", # derivative — unmaintained
+    "RUSTSEC-2024-0384", # instant — unmaintained
+]
+
+[licenses]
+version = 2
+allow = [
+    "MIT",
+    "Apache-2.0",
+    "Apache-2.0 WITH LLVM-exception",
+    "BSD-2-Clause",
+    "BSD-3-Clause",
+    "ISC",
+    "Unicode-DFS-2016",
+    "Unicode-3.0",
+    "Zlib",
+    "0BSD",
+    "MPL-2.0",
+    "CC0-1.0",
+    "BSL-1.0",
+    "OFL-1.1",
+]
+confidence-threshold = 0.8
+
+[[licenses.exceptions]]
+# Egui's font assets ship under the Ubuntu Font License, which has no
+# SPDX identifier. Scope the exception strictly to `epaint`.
+allow = ["LicenseRef-UFL-1.0"]
+crate = "epaint"
+
+[bans]
+multiple-versions = "allow"
+wildcards = "deny"
+
+[sources]
+unknown-registry = "deny"
+unknown-git = "deny"
+allow-registry = ["https://github.com/rust-lang/crates.io-index"]
