@@ -34,8 +34,8 @@ cargo build --workspace
 Each demo binary is in its own crate under `crates/<framework>-demos/src/bin/`:
 
 ```bash
-# Egui — counter demo
-cargo run -p egui-demos --bin egui-counter
+# Egui — quiz demo
+cargo run -p egui-demos --bin egui-quiz
 
 # GTK4 — random password generator
 cargo run -p gtk-demos --bin gtk-random-password-step4-strength
@@ -44,10 +44,10 @@ cargo run -p gtk-demos --bin gtk-random-password-step4-strength
 cargo run -p relm4-demos --bin relm4-simon-game
 
 # Iced — todo list
-cargo run -p iced-demos --bin iced-todo
+cargo run -p iced-demos --bin iced-to-do
 
-# FLTK — calculator
-cargo run -p fltk-demos --bin fltk-calculator
+# FLTK — pong game
+cargo run -p fltk-demos --bin fltk-pong
 ```
 
 Run `cargo run -p <crate> --bin` with no name to see the binaries each
